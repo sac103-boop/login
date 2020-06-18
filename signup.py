@@ -95,7 +95,7 @@ def signup():
 
 def close():
 	root.destroy()
-	import login
+	import login_main
 buttonsignup=Button(frame, text="Continue",width=40, relief="flat",command=lambda:signup())
 buttonsignup.place(x=30,y=350)
 buttonsignup.config(bg="#B0BDD7",font=("Bradley Hand ITC",15))
