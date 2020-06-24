@@ -48,18 +48,31 @@ usuario_entry_password.config(font=("Comic Sans MS",10),show="*")
 
 def logIn():
 
-	cursor.execute("SELECT * FROM Usuarios WHERE user=? AND password=?",(usuario_entry.get(),usuario_entry_password.get()))
+	cursor.execute("SELECT * FROM Usuarios WHERE user=?",(usuario_entry.get(),))
 	consulta=cursor.fetchall()
 	usuarios.commit()
+	print(consulta)
+	
+	for a in consulta:
+		for b in a:
+			m.append(b)
+	
+	
 	if usuario_entry.get()=='' or usuario_entry_password.get()=='':
-		messagebox.showwarning(title="ERROR", message="The field can't be empty")
-	else:
-		if consulta:
-			root.destroy()
-			import crud
 
-		else:
-			messagebox.showwarning(title="ERROR", message="The password is wrong")
+		messagebox.showwarning(title="ERROR", message="The field can't be empty")
+
+	elif usuario_entry.get() not in m:
+
+		messagebox.showwarning(title="ERROR", message="This User don´t exist")
+
+	elif usuario_entry.get() in m and usuario_entry_password.get() not in m:
+
+		messagebox.showwarning(title="ERROR", message="The password is wrong")
+
+	else:
+		root.destroy()
+		import crud
 
 
 def nueva_ventana():
