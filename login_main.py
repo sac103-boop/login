@@ -42,17 +42,13 @@ usuario_entry_password=Entry(frame, width=25)
 usuario_entry_password.place(x=45,y=230)
 usuario_entry_password.config(font=("Comic Sans MS",10),show="*")
 
-
-
-
-
 def logIn():
 
 	cursor.execute("SELECT * FROM Usuarios WHERE user=?",(usuario_entry.get(),))
 	consulta=cursor.fetchall()
 	usuarios.commit()
-	print(consulta)
 	
+	m=[]
 	for a in consulta:
 		for b in a:
 			m.append(b)
@@ -64,7 +60,7 @@ def logIn():
 
 	elif usuario_entry.get() not in m:
 
-		messagebox.showwarning(title="ERROR", message="This User don´t exist")
+		messagebox.showwarning(title="ERROR", message="This User don't exist")
 
 	elif usuario_entry.get() in m and usuario_entry_password.get() not in m:
 
@@ -88,9 +84,6 @@ boton_login.config(bg="#B0BDD7")
 boton_signup=Button(frame, width=15,text="SIGN UP NOW",font=("Bradley Hand ITC",10),relief="flat",command=nueva_ventana)
 boton_signup.place(x=145,y=300)
 boton_signup.config(bg="#B0BDD7")
-
-
-
 
 
 root.mainloop()
